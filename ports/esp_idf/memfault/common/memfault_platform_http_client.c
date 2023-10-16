@@ -13,7 +13,7 @@
 #include <string.h>
 
 #include "esp_http_client.h"
-#include "esp_https_ota.h"
+//#include "esp_https_ota.h"
 #include "esp_wifi.h"
 #include "memfault/components.h"
 #include "memfault/esp_port/core.h"
@@ -324,6 +324,7 @@ int memfault_esp_port_ota_update(const sMemfaultOtaUpdateHandler *handler) {
     goto cleanup;
   }
 
+  #if 0
 #if ESP_IDF_VERSION >= ESP_IDF_VERSION_VAL(5, 0, 0)
   esp_https_ota_config_t config = {
     .http_config = &(esp_http_client_config_t) {
@@ -349,6 +350,7 @@ int memfault_esp_port_ota_update(const sMemfaultOtaUpdateHandler *handler) {
     rv = MEMFAULT_PLATFORM_SPECIFIC_ERROR(err);
     goto cleanup;
   }
+  #endif
 
   const bool success = handler->handle_download_complete(handler->user_ctx);
   rv = success ? 1 : -1;
