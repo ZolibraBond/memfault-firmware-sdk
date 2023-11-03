@@ -150,6 +150,7 @@ list(APPEND COMPONENT_REQUIRES
     spi_flash
     console
     driver
+    app_update
 )
 
 if(CONFIG_MEMFAULT_LWIP_METRICS)
