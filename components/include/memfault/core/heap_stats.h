@@ -53,6 +53,8 @@
 extern "C" {
 #endif
 
+#define MEMFAULT_GET_HEAP_STATS_LR(_a) _a = __builtin_return_address(1)
+
 //! Record a single malloc. Called from within malloc handler (eg __wrap_malloc).
 //!
 //! @note This function usually should not be called directly, but instead via the macro
@@ -67,7 +69,7 @@ void memfault_heap_stats_malloc(const void *lr, const void *ptr, size_t size);
 #define MEMFAULT_HEAP_STATS_MALLOC(ptr_, size_)   \
   do {                                            \
     void *lr_;                                    \
-    MEMFAULT_GET_LR(lr_);                         \
+    MEMFAULT_GET_HEAP_STATS_LR(lr_);              \
     memfault_heap_stats_malloc(lr_, ptr_, size_); \
   } while (0)
 
