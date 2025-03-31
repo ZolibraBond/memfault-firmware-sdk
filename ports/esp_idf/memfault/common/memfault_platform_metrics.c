@@ -249,6 +249,7 @@ static void prv_collect_memory_usage_metrics(void) {
 }
 #endif  // CONFIG_MEMFAULT_METRICS_MEMORY_USAGE
 
+#if defined(FUNCTION_ALREADY_DEFINED_IN_BMEMFAULT)
 bool memfault_platform_metrics_timer_boot(uint32_t period_sec,
                                           MemfaultPlatformTimerCallback callback) {
   const esp_timer_create_args_t periodic_timer_args = {
@@ -278,6 +279,7 @@ bool memfault_platform_metrics_timer_boot(uint32_t period_sec,
 
   return true;
 }
+#endif  // FUNCTION_ALREADY_DEFINED_IN_BMEMFAULT
 
 #if defined(CONFIG_MEMFAULT_METRICS_CPU_TEMP)
 static void prv_collect_temperature_metric(void) {
