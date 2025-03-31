@@ -88,7 +88,7 @@
 // Espressif's esp-idf project uses a different include directory by default.
 #if defined(ESP_PLATFORM)
   #include "sdkconfig.h"
-  #if !defined(CONFIG_IDF_TARGET_ESP8266)
+  #if !defined(CONFIG_IDF_TARGET_ESP8266) && !defined(MEMFAULT_USE_ESP32_FREERTOS_INCLUDE)
     #define MEMFAULT_USE_ESP32_FREERTOS_INCLUDE
   #endif
 #endif
